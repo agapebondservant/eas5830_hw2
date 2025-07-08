@@ -55,6 +55,7 @@ def is_ordered_block(w3, block_num):
 	try:
 		if block.transactions:
 			for transaction_hash in block.transactions:
+				print(f"first it is {block}")
 				print(f"it is {transaction_hash}")
 				tx = w3.eth.get_transaction(transaction_hash)
 				print(f"Transaction: {tx.gasPrice}")

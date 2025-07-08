@@ -64,7 +64,7 @@ def is_ordered_block(w3, block_num):
 				if maxGasPrice < currentGasPrice:
 					return ordered
 	except Exception as e:
-		traceback.print_exception(e)
+		traceback.print_exc()
 				
 	return True
 

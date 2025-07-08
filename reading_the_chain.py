@@ -3,6 +3,7 @@ import json
 from web3 import Web3
 from web3.middleware import ExtraDataToPOAMiddleware
 from web3.providers.rpc import HTTPProvider
+import traceback
 
 
 # If you use one of the suggested infrastructure providers, the url will be of the form
@@ -51,16 +52,19 @@ def is_ordered_block(w3, block_num):
 	maxGasPrice = -1
 
 	# TODO YOUR CODE HERE
-	if block.transactions:
-		for transaction_hash in block.transactions:
-			tx = w3.eth.get_transaction(transaction_hash)
-			print(f"Transaction: {tx}")
-			if 'maxFeePerGas' in tx and 'maxPriorityFeePerGas' in tx:
-				currentGasPrice = min( tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas'), tx.get('maxFeePerGas') )
-			else:
-				currentGasPrice = tx.get('gasPrice') - block.get('baseFeePerGas')
-			if maxGasPrice < currentGasPrice:
-				return ordered
+	try:
+		if block.transactions:
+			for transaction_hash in block.transactions:
+				tx = w3.eth.get_transaction(transaction_hash)
+				print(f"Transaction: {tx}")
+				if 'maxFeePerGas' in tx and 'maxPriorityFeePerGas' in tx:
+					currentGasPrice = min( tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas'), tx.get('maxFeePerGas') )
+				else:
+					currentGasPrice = tx.get('gasPrice') - block.get('baseFeePerGas')
+				if maxGasPrice < currentGasPrice:
+					return ordered
+	except Exception as e:
+		traceback.print_exception(e)
 				
 	return True
 

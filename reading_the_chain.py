@@ -60,6 +60,8 @@ def is_ordered_block(w3, block_num):
 				else:
 					if tx.get('maxPriorityFeePerGas') is not None:
 						currentGasPrice = tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas')
+					elif tx.get('maxFeePerGas') is not None:
+						currentGasPrice = tx.get('maxFeePerGas')
 					else:
 						currentGasPrice = tx.get('gasPrice') - block.get('baseFeePerGas')
 				if maxGasPrice < currentGasPrice:

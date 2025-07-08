@@ -56,7 +56,7 @@ def is_ordered_block(w3, block_num):
 		if block.transactions:
 			for transaction_hash in block.transactions:
 				tx = w3.eth.get_transaction(transaction_hash)
-				print(f"Transaction: {tx}")
+				# print(f"Transaction: {tx}")
 				if 'maxFeePerGas' in tx and 'maxPriorityFeePerGas' in tx:
 					currentGasPrice = min( tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas'), tx.get('maxFeePerGas') )
 				else:

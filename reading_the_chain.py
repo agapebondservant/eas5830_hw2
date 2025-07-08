@@ -57,7 +57,7 @@ def is_ordered_block(w3, block_num):
 			for transaction_hash in block.transactions:
 				print(f"it is {transaction_hash}")
 				tx = w3.eth.get_transaction(transaction_hash)
-				print(f"Transaction: {tx.get('gasPrice')}")
+				print(f"Transaction: {tx.gasPrice}")
 				# if tx.get('maxFeePerGas') is not None and tx.get('maxPriorityFeePerGas') is not None:
 				# 	currentGasPrice = min( tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas'), tx.get('maxFeePerGas') )
 				# else:

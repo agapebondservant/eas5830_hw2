@@ -25,8 +25,7 @@ def connect_with_middleware(contract_json):
 		d = d['bsc']
 		address = d['address']
 		abi = d['abi']
-
-    url = "https://opbnb-testnet.infura.io/v3/af83c96cc0ff485bb901f9ed92726df3"
+	url = "https://opbnb-testnet.infura.io/v3/af83c96cc0ff485bb901f9ed92726df3"
 	w3 = Web3(HTTPProvider(url))
 	w3.middleware_onion.add(ExtraDataToPOAMiddleware)
 	contract = w3.eth.contract(address=address, abi=abi)

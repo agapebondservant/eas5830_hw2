@@ -61,6 +61,7 @@ def is_ordered_block(w3, block_num):
 					currentGasPrice = min( tx.get('maxPriorityFeePerGas') + block.get('baseFeePerGas'), tx.get('maxFeePerGas') )
 				else:
 					currentGasPrice = tx.get('gasPrice') - block.get('baseFeePerGas')
+				print(f"its here: {maxGasPrice} {currentGasPrice}")
 				if maxGasPrice < currentGasPrice:
 					return ordered
 	except Exception as e:
